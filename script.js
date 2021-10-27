@@ -45,17 +45,17 @@ if (isMobile.matches) {
 let playerScore = 0;
 let computerScore = 0;
 const winningScore = 7;
-// let isGameOver = true;
-// let isNewGame = true;
+let isGameOver = true;
+let isNewGame = true;
 
 // Render Everything on Canvas
 function renderCanvas() {
   // Canvas Background
-  context.fillStyle = 'black';
+  context.fillStyle = 'white';
   context.fillRect(0, 0, width, height);
 
   // Paddle Color
-  context.fillStyle = 'white';
+  context.fillStyle = 'black';
 
   // Player Paddle (Bottom)
   context.fillRect(paddleBottomX, height - 20, paddleWidth, paddleHeight);
@@ -74,7 +74,7 @@ function renderCanvas() {
   // Ball
   context.beginPath();
   context.arc(ballX, ballY, ballRadius, 2 * Math.PI, false);
-  context.fillStyle = 'white';
+  context.fillStyle = 'black';
   context.fill();
 
   // Score
@@ -90,9 +90,6 @@ function createCanvas() {
   body.appendChild(canvas);
   renderCanvas();
 }
-
-// Remove this
-createCanvas();
 
 // Reset Ball to Center
 function ballReset() {
@@ -224,9 +221,9 @@ function startGame() {
   computerScore = 0;
   ballReset();
   createCanvas();
-  animate();
+  setInterval(animate, 1000/60);
   canvas.addEventListener('mousemove', (e) => {
-    console.log(e.clientX);
+    // console.log(e.clientX);
     playerMoved = true;
     // Compensate for canvas being centered
     paddleBottomX = e.clientX - canvasPosition - paddleDiff;
@@ -242,4 +239,4 @@ function startGame() {
 }
 
 // On Load
-// startGame();
+startGame();
